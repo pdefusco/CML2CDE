@@ -158,7 +158,7 @@ In this tutorial you have built a workflow using CML Sessions and CDE Jobs. The 
 * CML and CDE can both be used to build Spark ML and ETL Pipelines. Each has its advantages but you don’t have to choose. 
 * CDP is foundationally built on SDX. CDE and CML datasets and workloads are all tracked from SDX. 
 * This implies that any results from Spark Jobs running in CDE are available to CML users, and vice versa. 
-* This implies you can close the loop and switch back and forth between CML and CDE at will. 
+* You can close the loop and switch back and forth between CML and CDE at will. 
 * Of course, if you prefer not to share your datasets with other users, Ranger and SDX will allow you to impose such limitations.
 
 
