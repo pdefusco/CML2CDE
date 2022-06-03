@@ -35,18 +35,15 @@ Navigate to the CDP Management Console and open your environment.
 In the next page, take note of the region. For example, in the screenshot below this is ```“us-east-2”```. 
 Save this to your editor, you will need this later.
 
-![alt text](images/cml2cde_readme1.png)
-
 Navigate to your CML Workspace and create a new project as shown below. 
+
+![alt text](images/cml2cde_readme1.png)
 
 Select the Git Option and paste the following URL:
 
 ```https://github.com/pdefusco/CML2CDE.git```
 
 There is no need to customize the Runtime Setup settings at the bottom of the page. Default option values are fine. 
-
-![alt text](images/cml2cde_readme2.png)
-
 
 Within the project, launch a CML Session with the following settings:
 
@@ -58,6 +55,8 @@ Enable Spark: disabled
 Resource Profile: 2 vCPU / 4 GiB Memory - 0 GPUs
 Other settings: default values are fine.
 ~~~
+
+![alt text](images/cml2cde_readme2.png)
 
 Next, open script ```“0_Setup.py”``` and hit the play button at the top of the screen to run all code at once. 
 
