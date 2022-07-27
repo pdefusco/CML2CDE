@@ -2,4 +2,6 @@ pyyaml
 requests
 github3.py
 requests_toolbelt
-
+lxml
+xmltodict
+pandas
