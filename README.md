@@ -11,6 +11,8 @@ This tutorial is divided into the following sections:
 1. Installing the CDE CLI
 2. A CDE CLI and API tutorial
 3. A simple CDE CI/CD pipeline with CML Jobs and CML API v2
+4. More Python Requests with CDE examples
+5. A demonstration of how to convert Spark Oozie Actions to Spark CDE Jobs programmatically
 
 
 
@@ -140,13 +142,34 @@ Walk through the notebook and follow along in each cell. Detailed instructions a
 
 ## Part 3: A simple CDE CI/CD pipeline with CML Jobs and CML API v2
 
-Finally, open Notebook ```“3_CML2CDE_Pipeline.ipynb”```. APIv2 is the native CML Python Library to build CI/CD and ML Ops pipelines. 
+Open Notebook ```“3_CML2CDE_Pipeline.ipynb”```. APIv2 is the native CML Python Library to build CI/CD and ML Ops pipelines. 
 This notebook uses APIv2 to build a CI/CD Pipeline made of CDE Jobs. Specifically in this notebook you will:
 
 * Instantiate two CML Jobs and trigger their execution with APIv2 
 * Each CML Job will include one or more API calls to CDE. As a whole they will constitute a workflow to move PySpark Jobs from CML to CDE Resources.
 
 For more on CML APIv2 it, please visit the “Related Demos and Tutorials” section below. 
+
+
+
+## Part 4: CDE with Python Requests
+
+Open Notebook ```“4_Python2CDE.ipynb”```. The tutorial showcases how to convert more CDE API calls to Python Request methods. 
+Detailed instructions are included in the notebook. You can reuse the same code or use it as inspiration to create more Python workflows with CDE.
+
+
+
+## Part 5: Converting Spark Oozie Actions to Spark CDE Jobs Programmatically
+
+Open Notebook ```“5_Oozie2CDESpark.ipynb”```. Oozie is a legacy Hadoop workflow orchestration project. 
+It gained a lot of traction as a tool to schedule complex MapReduce job sequences and was later upgraded to support Spark Jobs via "Spark Oozie Actions".
+The project has been largely replaced by Apache Airflow which is natively available in each CDE Virtual Cluster without need for installation.
+The notebook showcases how to convert Oozie Spark Actions into Spark CDE Jobs. 
+
+In order to use it you need to have:
+* Spark Job files (jar, python or java ok)
+* XML Files corresponding to the Spark Oozie Actions you want to migrate
+
 
 
 
