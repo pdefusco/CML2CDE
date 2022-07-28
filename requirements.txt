@@ -5,3 +5,5 @@ requests_toolbelt
 lxml
 xmltodict
 pandas
+pyparsing
+flatdict
