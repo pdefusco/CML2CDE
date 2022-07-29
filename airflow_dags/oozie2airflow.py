@@ -24,22 +24,3 @@ dag = DAG(
     is_paused_upon_creation=False
     )
 
-SparkPi_Step = CDEJobRunOperator(
-    task_id='SparkPi',
-    dag=dag,
-    job_name='SparkPi'
-    )
-
-cdw_query = """Create external table external_table(name string,age int,address string,zip int)row format delimitedfields terminated by ','stored as textfilelocation '/test/abc';"""
-
-Create_External_Table_Step = CDWOperator(
-    task_id="Create_External_Table",
-    dag=dag,
-    cli_conn_id="hive_conn",
-    hql=cdw_query,
-    schema='default',
-    ### CDW related args ###
-    use_proxy_user=False,
-    query_isolation=True
-)
-
