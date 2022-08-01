@@ -9,7 +9,6 @@
       <ok to = "end" />
       <error to = "fail" />
    </action>
-   
    <kill name = "fail">
       <message>Script failed, error message[${wf:errorMessage(wf:lastErrorNode())}]
          </message>
