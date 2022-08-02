@@ -42,17 +42,20 @@ class OozieWorkflow:
 class CdeJob:
     '''Class representing a CDE Job'''
     
-    def __init__(self, cde_job_name, cde_resource_name, cde_job_file):
+    def __init__(self, cde_job_name, cde_resource_name, cde_job_file, workflow_xml_dict):
         self.cde_job_name = cde_job_name
         self.cde_resource = cde_resource_name
         self.cde_job_file = cde_job_file
+        self.workflow_xml_dict = workflow_xml_dict
+    
     
 class SparkCdeJob(CdeJob):
     '''Class representing a Spark CDE Job. Subtype of CDE Job.''' 
 
-    def __init__(self, cde_job_name, cde_resource_name, cde_job_file):
+    def __init__(self, cde_job_name, cde_resource_name, cde_job_file, workflow_xml_dict):
         self.spark_cde_payload = spark_cde_payload
-        super().__init__(cde_job_name, cde_resource_name, cde_job_file)
+        super().__init__(cde_job_name, cde_resource_name, cde_job_file, workflow_xml_dict)
+    
     
     def oozie_to_cde_spark_payload(cde_resource_name):
         pass
@@ -61,28 +64,12 @@ class SparkCdeJob(CdeJob):
 class AirflowCdeJob(CdeJob):
     '''Class representing an Airflow CDE Job. Subtype of CDE Job.'''
     
-    def __init__(self, cde_job_name, cde_resource_name, cde_job_file):
-        super().__init__(cde_job_name, cde_resource_name, cde_job_file)
+    def __init__(self, cde_job_name, cde_resource_name, cde_job_file, workflow_xml_dict):
+        super().__init__(cde_job_name, cde_resource_name, cde_job_file, workflow_xml_dict)
     
-    def oozie_to_cde_spark_payload(cde_resource_name):
+    
+    def oozie_to_cde_airflow_payload(cde_resource_name):
         pass
-    
-    
-class airflow_cde_job:
-    '''Class representing an Airflow CDE Job'''
-    
-    def __init__(self, cde_job_name, cde_resource_name, cde_job_file):
-        super().__init__(cde_job_name, cde_resource_name, cde_job_file)
-    
-    def oozie_to_cde_airflow_payload(cde_resource_name): 
-        pass
-        
-        
-class ConversionFactory:
-    '''Factory Class used to produce instances of CDE Spark & Airflow Jobs'''
-    
-    def __init__(self, workflow_xml_dict):
-        self.workflow_xml_dict = workflow_xml_dict
         
     
     def initialize_dag():
