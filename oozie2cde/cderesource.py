@@ -71,9 +71,9 @@ class CdeResource:
         print(x.text)
     
     
-    def create_job_from_resource(self, cde_job_name, token, cde_payload):
+    def create_job_from_resource(self, token, cde_payload):
 
-        print("Working on Job: {}".format(cde_job_name))
+        print("Working on Job: {}".format(cde_payload["name"]))
 
         headers = {
             'Authorization': f"Bearer {token}",

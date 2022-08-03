@@ -3,7 +3,7 @@ from dateutil import parser
     
 from datetime import datetime, timedelta
     
-from datetime import timezone
+import pendulum
     
 from airflow import DAG
     
@@ -16,13 +16,13 @@ from cloudera.cdp.airflow.operators.cdw_operator import CDWOperator
 from cloudera.cdp.airflow.operators.cde_operator import CDEJobRunOperator
 
 default_args = {
-    'owner': 'your_username_here',
+        'owner': 'pauldefusco',
     'retry_delay': timedelta(seconds=5),
     'depends_on_past': False,
-    'start_date': parser.isoparse('2021-05-25T07:33:37.393Z').replace(tzinfo=timezone.utc)
+    'start_date': pendulum.datetime(2016, 1, 1, tz="Europe/Amsterdam")
     }
 
-dag = DAG(
+oozie_2_airflow_dag = DAG(
     'airflow-pipeline-demo',
     default_args=default_args,
     schedule_interval='@daily',
@@ -32,7 +32,7 @@ dag = DAG(
 
 SparkPi_Step = CDEJobRunOperator(
         task_id='SparkPi',
-        dag=dag,
+        dag=oozie_2_airflow_dag,
         job_name='SparkPi'
         )
 

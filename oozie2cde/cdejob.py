@@ -14,9 +14,10 @@ import pyparsing
 class CdeJob:
     '''Class representing a CDE Job'''
     
-    def __init__(self, workflow_xml_dict, cde_resource_name):
+    def __init__(self, workflow_xml_dict, cde_resource_name, dag_name=None):
         self.workflow_xml_dict = workflow_xml_dict
         self.cde_resource_name = cde_resource_name
+        self.dag_name = dag_name
  
     
     def initialize_dag(self, dag_dir, dag_file_name):
@@ -27,7 +28,7 @@ class CdeJob:
     def dag_imports(self, dag_dir, dag_file_name):
         imports = """\nfrom dateutil import parser
     \nfrom datetime import datetime, timedelta
-    \nfrom datetime import timezone
+    \nimport pendulum
     \nfrom airflow import DAG
     \nfrom airflow.operators.email import EmailOperator
     \nfrom airflow.operators.python_operator import PythonOperator
@@ -38,22 +39,22 @@ class CdeJob:
             f.write(imports)
 
     
-    def dag_declaration(self, dag_dir, dag_file_name):
+    def dag_declaration(self, dag_owner, dag_dir, dag_file_name):
     
-        declaration = """default_args = {
-    'owner': 'your_username_here',
+        declaration = """default_args = {{
+        'owner': '{}',
     'retry_delay': timedelta(seconds=5),
     'depends_on_past': False,
-    'start_date': parser.isoparse('2021-05-25T07:33:37.393Z').replace(tzinfo=timezone.utc)
-    }
+    'start_date': pendulum.datetime(2016, 1, 1, tz="Europe/Amsterdam")
+    }}
 
-dag = DAG(
+{} = DAG(
     'airflow-pipeline-demo',
     default_args=default_args,
     schedule_interval='@daily',
     catchup=False,
     is_paused_upon_creation=False
-    )\n\n"""
+    )\n\n""".format(dag_owner, self.dag_name)
     
         with open(dag_dir+"/"+dag_file_name, 'a') as f:
             f.write(declaration)
@@ -141,9 +142,9 @@ dag = DAG(
     
         spark_operator = """{} = CDEJobRunOperator(
         task_id='{}',
-        dag=dag,
+        dag={},
         job_name='{}'
-        )\n\n""".format(step_name, task_id, spark_cde_job_name)
+        )\n\n""".format(step_name, task_id, self.dag_name, spark_cde_job_name)
 
         with open(dag_dir+"/"+dag_file_name, 'a') as f:
             f.write(spark_operator)
@@ -155,14 +156,14 @@ dag = DAG(
 
 {} = CDWOperator(
     task_id="{}",
-    dag=dag,
+    dag={},
     cli_conn_id="hive_conn",
     hql=cdw_query,
     schema='default',
     ### CDW related args ###
     use_proxy_user=False,
     query_isolation=True
-)\n\n'''.format(cdw_query, step_name, task_id)
+)\n\n'''.format(cdw_query, step_name, task_id, self.dag_name)
     
         with open(dag_dir+"/"+dag_file_name, 'a') as f:
             f.write(cdw_operator)
@@ -177,8 +178,8 @@ dag = DAG(
     cc="{}",
     subject="{}", 
     html_content="{}", 
-    dag=dag)
-        '''.format(step_name, task_id, email_to, email_cc, email_subject, email_body)
+    dag={})
+        '''.format(step_name, task_id, email_to, email_cc, email_subject, email_body, self.dag_name)
 
         with open(dag_dir+"/"+dag_file_name, 'a') as f:
             f.write(email_operator)
@@ -254,10 +255,27 @@ dag = DAG(
         print("Converted Spark Oozie Action into Spark CDE Payload")
 
         return spark_cde_payload
+
     
+    def oozie_to_cde_airflow_payload(self, file_name, resource_name, cde_job_name):
+
+    ## Variables: CDE file name, resource name and job name 
     
-    def oozie_to_cde_airflow_payload(self):
-        pass
+        airflow_cde_payload = {"type": "airflow", 
+                               "airflow": {"dagFile": "file_name"}, #"my_dag.py"
+                               "identity": {"disableRoleProxy": True},
+                               "mounts": [{"dirPrefix": "/","resourceName": "resource_name"}],
+                               "name": "cde_job_name",
+                               "retentionPolicy": "keep_indefinitely"}
+        
+        airflow_cde_payload["airflow"]["dagFile"] = file_name
+        airflow_cde_payload["mounts"][0]["resourceName"] = resource_name
+        airflow_cde_payload["name"] = cde_job_name
+        
+        print("Working on Airflow CDE Job: {}".format(airflow_cde_payload["name"]))
+        print("Converted DAG into Airflow CDE Payload")
+
+        return airflow_cde_payload
     
     
     def parse_oozie_workflow(self, dag_dir, dag_file_name, workflow_xml_dict):
