@@ -13,6 +13,8 @@ This tutorial is divided into the following sections:
 3. A simple CDE CI/CD pipeline with CML Jobs and CML API v2
 4. More Python Requests with CDE examples
 5. A demonstration of how to convert Spark Oozie Actions to Spark CDE Jobs programmatically
+6. A demonstration of how to convert Oozie Workflows to Airflow CDE Jobs programmatically
+7. Using the oozie2cde API, a full example of a migration from Oozie to CDE
 
 
 
