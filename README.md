@@ -113,10 +113,10 @@ Other options: you can leave the remaining options such as Edition and Version t
 ![alt text](images/cml2cde_readme9.png)
 
 
-Open Notebook ```"1_CDE_CLI_Install.ipynb”```. The notebooks shows you how to install the CDE CLI. 
+The notebooks shows you how to install the CDE CLI. 
 Notice that although we will complete this process in CML, this can just as easily be done in your local machine. 
 
-Run all cells by clicking on “Run” -> “Run All Cells” as shown below. No changes to the code are required. 
+Open Notebook ```"1_CDE_CLI_Install.ipynb”```. Run all cells by clicking on “Run” -> “Run All Cells” as shown below. No changes to the code are required. 
 
 ![alt text](images/cml2cde_readme10.png)
 
@@ -142,7 +142,7 @@ Walk through the notebook and follow along in each cell. Detailed instructions a
 
 ## Part 3: A simple CDE CI/CD pipeline with CML Jobs and CML API v2
 
-Open Notebook ```“3_CML2CDE_Pipeline.ipynb”```. APIv2 is the native CML Python Library to build CI/CD and ML Ops pipelines. 
+APIv2 is the native CML Python Library to build CI/CD and ML Ops pipelines. 
 This notebook uses APIv2 to build a CI/CD Pipeline made of CDE Jobs. Specifically in this notebook you will:
 
 * Instantiate two CML Jobs and trigger their execution with APIv2 
@@ -150,18 +150,22 @@ This notebook uses APIv2 to build a CI/CD Pipeline made of CDE Jobs. Specificall
 
 For more on CML APIv2 it, please visit the “Related Demos and Tutorials” section below. 
 
+Open Notebook ```“3_CML2CDE_Pipeline.ipynb”``` and follow the instructions in the comments.
+
 
 
 ## Part 4: CDE with Python Requests
 
-Open Notebook ```“4_Python2CDE.ipynb”```. The tutorial showcases how to convert more CDE API calls to Python Request methods. 
+The tutorial showcases how to convert more CDE API calls to Python Request methods. 
 Detailed instructions are included in the notebook. You can reuse the same code or use it as inspiration to create more Python workflows with CDE.
+
+Open Notebook ```“4_Python2CDE.ipynb”``` and follow the instructions in the comments. 
 
 
 
 ## Part 5: Converting Spark Oozie Actions to Spark CDE Jobs Programmatically
 
-Open Notebook ```“5_Oozie2CDESpark.ipynb”```. Oozie is a legacy Hadoop workflow orchestration project. 
+Oozie is a legacy Hadoop workflow orchestration project. 
 It gained a lot of traction as a tool to schedule complex MapReduce job sequences and was later upgraded to support Spark Jobs via "Spark Oozie Actions".
 The project has been largely replaced by Apache Airflow which is natively available in each CDE Virtual Cluster without need for installation.
 The notebook showcases how to convert Oozie Spark Actions into Spark CDE Jobs. 
@@ -170,6 +174,23 @@ In order to use it you need to have:
 * Spark Job files (jar, python or java ok)
 * XML Files corresponding to the Spark Oozie Actions you want to migrate
 
+Open Notebook ```“5_Oozie2CDESpark.ipynb”``` and follow the instructions in the comments.
+
+
+
+## Part 6: Converting Spark Oozie Actions to Airflow CDE Jobs Programmatically
+
+Continuing from notebook 5, this notebook implements a series of methods to convert Oozie Workflows to Airflow CDE DAGs.
+
+Open notebook ```“6_Oozie2CDEAirflow.ipynb”``` and follow the instructions in the comments. 
+
+
+
+## Part 7: Using the oozie2cde Module
+
+Building up from notebooks 4 - 6, this notebooks puts everything together in an api called "oozie2cde". The API is located in the "oozie2cde" folder and is easily replicable on your local machine. 
+
+Open notebook ```“7_Using_Oozie2CDE.ipynb”``` and follow the instructions in the comments.
 
 
 
