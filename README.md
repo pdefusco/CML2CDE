@@ -33,7 +33,7 @@ please start with [this repository](https://github.com/pdefusco/CML_CrashCourse)
 ## CML Project Setup
 
 Navigate to the CDP Management Console and then open CML. Take note of the region your workspace is in. For example, in the screenshot below this is ```“us-east-2”```. 
-Save this to your editor, you will need this later.
+#### Save this to your editor, you will need this later as the REGION environment variable.
 
 ![alt text](images/cml2cde_extras_sept22_1.png)
 
@@ -72,7 +72,7 @@ This works for both AWS and Azure without edits.
 
 Follow along while the code executes on the right side of the screen. 
 When the prompt turns back to green, enter the following code snippet and copy the output to your editor. 
-Make a note, this will be the “STORAGE” variable.
+#### Save this to your editor, you will need this later as the STORAGE environment variable.
 
 ![alt text](images/cml2cde_readme4.png)
 
@@ -80,7 +80,7 @@ Next, navigate to your CDE Virtual Cluster. Open the Cluster Details page as sho
 
 ![alt text](images/cml2cde_readme5.png)
 
-Copy the value for the JOBS_API_URL to your editor. 
+#### Copy the value for the JOBS_API_URL and save it to your editor, you will need this later as the JOBS_API_URL environment variable. 
 
 ![alt text](images/cml2cde_readme6.png)
 
@@ -91,7 +91,7 @@ Set the variables with the following keys and values as shown below.
 
 ![alt text](images/cml2cde_readme7.png)
 
-Finally, go back to CML and kill your current Workbench Editor session. You won’t need it anymore.
+Finally, go back to CML and end your current Workbench Editor session. You won’t need it anymore.
 
 ![alt text](images/cml2cde_readme8.png)
 
