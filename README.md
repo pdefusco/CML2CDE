@@ -32,12 +32,10 @@ please start with [this repository](https://github.com/pdefusco/CML_CrashCourse)
 
 ## CML Project Setup
 
-Navigate to the CDP Management Console and open your environment.
-
-![alt text](images/cml2cde_readme01.png)
-
-In the next page, take note of the region. For example, in the screenshot below this is ```“us-east-2”```. 
+Navigate to the CDP Management Console and then open CML. Take note of the region your workspace is in. For example, in the screenshot below this is ```“us-east-2”```. 
 Save this to your editor, you will need this later.
+
+![alt text](images/cml2cde_extras_sept22_1.png)
 
 Navigate to your CML Workspace and create a new project as shown below. 
 
