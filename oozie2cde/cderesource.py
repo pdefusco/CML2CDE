@@ -11,7 +11,7 @@ import xmltodict as xd
 import pyparsing
 
 
-class CdeResource:
+class CdeConnection:
     '''Class to establish a connection to a CDE Virtual Cluster
        and interact with it e.g. upload Spark CDE Job files'''
     
