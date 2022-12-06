@@ -27,7 +27,7 @@ os.environ['STORAGE'] = storage
 
 ### Downloading Lab Files
 
-!wget https://www.cloudera.com/content/dam/www/marketing/tutorials/cdp-using-cli-api-to-automate-access-to-cloudera-data-engineering/tutorial-files.zip
+!curl -O https://www.cloudera.com/content/dam/www/marketing/tutorials/cdp-using-cli-api-to-automate-access-to-cloudera-data-engineering/tutorial-files.zip
 !mv tutorial-files.zip /home/cdsw/data
 !unzip /home/cdsw/data/tutorial-files.zip -d /home/cdsw/data
   
